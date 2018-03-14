@@ -1,0 +1,118 @@
+extend layout
+
+block content
+    h3 markdown
+    :markdown
+        #hhhhhhh
+        **imooc**
+        ___
+    h3 coffee less
+    //- style
+    //-     :less
+    //-         p{
+    //-             color:#999;
+    //-         }
+    include style
+        style.
+            h2{
+                color:#000;
+            }
+    include title.html
+
+
+
+    //- class等属性
+    h1.title.title1#title. 
+        00000000000 000 00
+        <strong>000</strong> 
+        000
+
+    h1.title.title1#title 
+        | 00000000000 000 0012132额额都是我的ewdwdas 
+        strong 0131221000
+        | 000
+    section #{course}
+    p
+        //- 
+            h1.title.title1#title 
+                | 00000000000 000 00
+                strong 0131221
+                | 000
+        a(href="http://baidu.com")
+    br
+    h3 变量使用
+    ul
+        - var data = 'text'
+        - var htmlData = '<script>alert(1)</script>'
+        li #{data}
+        li !{htmlData}
+        li= htmlData
+        li!= htmlData
+        li \#{htmlData}
+        
+        li \!{htmlData}
+        input(value='#{newData}')
+        input(value=newData)
+        
+    hr
+    br
+    h3 流程 for/each/while/if-else-unless
+    -var obj = {course:'jade',level:'high'}
+    -var n = 2
+    
+    h3 for
+    -for (var k in obj)
+        p= obj[k]
+    h3 each
+    -each value,key in obj
+        p #{value}:#{key}
+    
+
+    h3 mixin
+    //- 定义
+    mixin lesson
+        p hhhhhhhaahhah
+    //- 使用 前面加加号 +name
+    +lesson
+    //- 可以传参
+    mixin study(name,courses)
+        p #{name}
+        ul.courses
+            each course in courses
+                li=course
+    +study('nananan',['1','2'])
+    //- 可以嵌套
+    //- 内联代码块
+    mixin team(name)
+        p(class=attributes.class)
+        if block
+            block
+        else
+            p none 0000
+    +team('hhhh')
+        p one
+    //- 传递属性
+    +team('hhhh')(class="classname")
+
+    //- 模版继承 内部block会覆盖父级的block
+    //- 代码包含include 定义新文件，可以将新文件这些代码直接拿到 include 的地方 例如：head
+    h3 模版继承block
+    block desc
+        p inwsdhskidhfishfdish 
+    block desc
+    block desc
+    block desc
+
+    //- 核心api
+    //- 
+        jade.compile(source,options) 
+
+        jade.compileFile(path,options)
+
+        jade.compileClient(source,options)
+
+        jade.render(source,options)
+
+        jade.renderFile(filename,options)
+
+        
